@@ -1,0 +1,17 @@
+node_modules
+README.md
+build/
+.env
+ormconfig.json
+
+yarn.lock
+yarn-error.log
+
+categories/*
+!categories/.gitkeep
+
+products/*
+!products/.gitkeep
+
+tmp/*
+!tmp/.gitkeep
