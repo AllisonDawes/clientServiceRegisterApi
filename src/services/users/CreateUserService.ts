@@ -9,6 +9,7 @@ interface IRequest {
   name: string;
   email: string;
   cpf: string;
+  office: string;
   password: string;
 }
 
@@ -17,6 +18,7 @@ class CreateUserService {
     name,
     email,
     cpf,
+    office,
     password,
   }: IRequest): Promise<User> {
     const userRepository = getRepository(User);
@@ -47,6 +49,7 @@ class CreateUserService {
       name,
       email,
       cpf,
+      office,
       admin: false,
       password: passwordHashed,
     });

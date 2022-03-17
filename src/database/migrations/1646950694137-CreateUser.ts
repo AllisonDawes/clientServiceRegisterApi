@@ -26,6 +26,10 @@ export default class CreateUser1646950694137 implements MigrationInterface {
             type: "varchar",
           },
           {
+            name: "office",
+            type: "varchar",
+          },
+          {
             name: "admin",
             type: "boolean",
           },

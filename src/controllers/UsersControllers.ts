@@ -4,6 +4,8 @@ import { classToPlain } from "class-transformer";
 import CreateUserService from "../services/users/CreateUserService";
 import FindAllUsersService from "../services/users/FindAllUsersService";
 import FindUserByFilterService from "../services/users/FindUserByFilterService";
+import UpdateUserService from "../services/users/UpdateUserService";
+import DeleteUserService from "../services/users/DeleteUserService";
 
 class UsersControllers {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -33,7 +35,7 @@ class UsersControllers {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, email, cpf, password } = request.body;
+    const { name, email, cpf, office, password } = request.body;
 
     const createUser = new CreateUserService();
 
@@ -41,10 +43,44 @@ class UsersControllers {
       name,
       email,
       cpf,
+      office,
       password,
     });
 
     return response.status(200).json(classToPlain(user));
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const user_admin = request.user.id;
+    const { user_id } = request.params;
+    const { name, email, cpf, office } = request.body;
+
+    const updateUser = new UpdateUserService();
+
+    const user = await updateUser.execute({
+      user_admin,
+      user_id,
+      name,
+      email,
+      cpf,
+      office,
+    });
+
+    return response.status(200).json(classToPlain(user));
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const user_admin = request.user.id;
+    const { user_id } = request.params;
+
+    const deleteUser = new DeleteUserService();
+
+    await deleteUser.execute({
+      user_admin,
+      user_id,
+    });
+
+    return response.status(200).json();
   }
 }
 

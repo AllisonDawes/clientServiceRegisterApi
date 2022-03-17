@@ -13,5 +13,7 @@ usersRouter.use(ensureAuthenticated);
 usersRouter.get("/", usersControllers.index);
 usersRouter.get("/find_users", usersControllers.show);
 usersRouter.post("/", usersControllers.create);
+usersRouter.put("/:user_id", usersControllers.update);
+usersRouter.delete("/:user_id", usersControllers.delete);
 
 export default usersRouter;

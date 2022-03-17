@@ -21,6 +21,9 @@ class User {
   @Column()
   cpf: string;
 
+  @Column()
+  office: string;
+
   @Column("boolean")
   admin: boolean;
 
