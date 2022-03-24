@@ -35,11 +35,13 @@ class UsersControllers {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
+    const admin_id = request.user.id;
     const { name, email, cpf, office, password } = request.body;
 
     const createUser = new CreateUserService();
 
     const user = await createUser.execute({
+      admin_id,
       name,
       email,
       cpf,
